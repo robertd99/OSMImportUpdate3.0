@@ -9,11 +9,11 @@
 
 
 
+<pre>
 
-
-Edited: 
+Edited: <br>
   landusages.sql: 
-  -only convert polygons, not lines and points 
+    -only convert polygons, not lines and points 
     -only convert polygons with the correct subclassname as specified by OSM 
     -only computing the ST_Area of polygons where ST_IsValid = '1' (true), preventing negative Areas so the conversion doesnt fail 
     
@@ -41,7 +41,7 @@ Edited:
        (StatementIdentifierString is used to identify the correct query if multiple queries are running on the server at the same time,
        if there are multiple queries containing the same IdentifierString the IsRunningChecker cant determine which is the right one you        you want information about)
       -operates in a own thread so isRunningChecker.interrupt() must be called after sql statement is finished 
-      
+  </pre>    
       
       
     
