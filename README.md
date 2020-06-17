@@ -1,10 +1,41 @@
 # OSMUpdateWizard with Postgres COPY
-
-edit demo_db_inter.txt and replace passoword and other information
-rename demo_db_inter.txt to db_inter.txt
-
-if not done yet, compile the sourcecode to jar
-Main-Class is osm2inter.OSMImport
-
-run import_planet.sh
-eventually you have to update the paths in import_planet.sh
+Edited: 
+  landusages.sql:
+    -only convert polygons, not lines and points
+    -only convert polygons with the correct subclassname as specified by OSM
+    -only computing the ST_Area of polygons where ST_IsValid = '1' (true), preventing negative Areas so the conversion doesnt fail
+    
+  waterareas:sql:
+    -only convert polygons with the correct classificationid
+    -only computing the ST_Area of polygons where ST_IsValid = '1' (true), preventing negative Areas so the conversion doesnt fail
+    
+  OSMExtractor.java:
+    -commented out: "System.err.println("could not find all members of relation (ok when not importing whole world): osm_id: " +   
+                   relation.getOSMIDString());" 
+                   
+  AbstractElement.java: 
+    -commented out: "System.err.println("null value for key (when deserializing attributes): " + key);"
+    
+  New Function:
+    createSpatialIndex():
+      -creates spataial indexes(GIST) for the tables: 
+        MY_HOUSENUMBERS, MY_ADMIN_LABELS, MY_BOUNDARIES, MY_BUILDINGS, MY_AMENITIES, MY_LANDUSAGES, MY_PLACES, MY_ROADS, 
+        MY_TRANSPORT_AREAS, MY_TRANSPORT_POINTS, MY_WATERAREA, MY_WATERWAYS for geometry column
+  
+  New Class: 
+    IsRunningChecker.java:
+      -checks every 5 minutes (sleep 300000) for the last state_change, PID and depending on postgreversion waiting or
+       wait_event and wait_event_type for the specified connection parameters and StatementIdentifierString
+       (StatementIdentifierString is used to identify the correct query if multiple queries are running on the server at the same time,
+       if there are multiple queries containing the same IdentifierString the IsRunningChecker cant determine which is the right one you        you want information about)
+      -operates in a own thread so isRunningChecker.interrupt() must be called after sql statement is finished 
+      
+      
+      
+    
+  
+  
+  
+  
+    
+        
