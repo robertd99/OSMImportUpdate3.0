@@ -1,4 +1,16 @@
 # OSMUpdateWizard with Postgres COPY
+
+
+
+
+
+
+
+
+
+
+
+
 Edited: 
   landusages.sql:
     -only convert polygons, not lines and points
