@@ -11,15 +11,15 @@
 
 
 
-Edited: \n
-  landusages.sql: \n
-  -only convert polygons, not lines and points \n
-    -only convert polygons with the correct subclassname as specified by OSM \n
-    -only computing the ST_Area of polygons where ST_IsValid = '1' (true), preventing negative Areas so the conversion doesnt fail \n\n
+Edited: 
+  landusages.sql: 
+  -only convert polygons, not lines and points 
+    -only convert polygons with the correct subclassname as specified by OSM 
+    -only computing the ST_Area of polygons where ST_IsValid = '1' (true), preventing negative Areas so the conversion doesnt fail 
     
-  waterareas.sql: \n
-    -only convert polygons with the correct classificationid \n
-    -only computing the ST_Area of polygons where ST_IsValid = '1' (true), preventing negative Areas so the conversion doesnt fail \n
+  waterareas.sql: 
+    -only convert polygons with the correct classificationid 
+    -only computing the ST_Area of polygons where ST_IsValid = '1' (true), preventing negative Areas so the conversion doesnt fail 
     
   OSMExtractor.java:
     -commented out: "System.err.println("could not find all members of relation (ok when not importing whole world): osm_id: " +   
